@@ -1,0 +1,24 @@
+import numpy as np
+arr=np.asarray(([36,36,21,35],[28,29,31,32],[26,28,29,29]))
+print('arr:\n',arr)
+mn=np.mean(arr)
+data=(arr-mn)
+rows=data.shape[0]
+cols=data.shape[1]
+datasquare=data**2
+cf=(np.sum(data)**2/(rows*cols))
+CJ=np.sum(data,axis=0,dtype=int)
+CJsquare=CJ**2
+SSC=np.sum(CJsquare/3)-cf
+RJ=np.sum(data,axis=1,dtype=int)
+RJsquare=RJ**2
+SSR=np.sum(RJsquare/4)-cf
+Xij=np.sum(np.sum(datasquare,axis=0))
+SST=Xij-cf
+SSE=SST-SSC-SSR
+MSE=SSE/((rows-1)*(cols-1))
+MSR=SSR/(rows-1)
+MSC=SSC/(cols-1)
+FC=MSE/MSC
+FR=MSE/MSR
+print('FC=',FC,'FR=',FR)
